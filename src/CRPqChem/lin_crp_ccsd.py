@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Eric Fischer, 10.08.2026, v2.0
+LinCRP-CCSD (restricted)
 
-Implementation of Cavity Born-Oppenheimer (CBO) coupled cluster theory with singles and doubles 
-in cavity reaction potential (CRP) formulation (CRP-CCSD).
-CRP-CCSD approach minimizes CBO electronic energy in cavity subspace self-consistently and is 
-formally similar to implicit solvation CCSD models.
+Implementation of linearized cavity Born-Oppenheimer (CBO) coupled cluster theory with 
+singles and doubles excitations in cavity reaction potential (CRP) formulation (LinCRP-CCSD).
+
+CRP-CCSD minimizes CBO electronic energy in cavity subspace self-consistently and is 
+formally similar to implicit solvation CCSD models. Linearization refers here to a decoupling
+of amplitude and multiplier equations not to a linearization w.r.t amplitudes.
 
 Correlated dipole fluctuation corrections for ab initio vibro-polaritonic chemistry.
 
 Code exploits functionalities of PySCF for electronic structure calculations.
 
-Literature CBO-CCSD/CRP-CCSD:
+Literature LinCRP-CCSD/CRP-RHF:
 Fischer, J. Chem. Phys. 161, 164112 (2024). doi:10.1063/5.0231528
 Fischer, J. Chem. Theory Comput. (2025) 21 (23): 12081-12093. doi:10.1021/acs.jctc.5c01604
 """
@@ -20,7 +22,6 @@ Fischer, J. Chem. Theory Comput. (2025) 21 (23): 12081-12093. doi:10.1021/acs.jc
 import numpy as np
 from pyscf import cc, ao2mo, lib
 
-   
 # --- Linearised CRP-RCCSD approach ---
 
 class LinCRPCCSD(cc.ccsd.CCSD):
@@ -140,8 +141,8 @@ class LinCRPCCSD(cc.ccsd.CCSD):
         return eris
 
     def _make_cbo_eris_outcore(self, mo_coeff):
-        raise NotImplementedError("Out-of-core CBO-CCSD ERI transformation is not implemented yet."
-                                  "Please use in-core mode or increase cc.max_memory.")
+        raise NotImplementedError("Not implemented yet, increase cc.max_memory.")
+
 
 
     def ao2mo(self, mo_coeff=None):
@@ -197,7 +198,7 @@ class LinCRPCCSD(cc.ccsd.CCSD):
             eris = self.ao2mo(mo_coeff=self.mo_coeff)
 
         # Call parent update_amps method using proper super()
-        t1_new, t2_new = super().update_amps(t1, t2, eris)
+        t1new, t2new = super().update_amps(t1, t2, eris)
     
         # Lambda1 correction
         if self.lambda1 is True:
@@ -216,7 +217,7 @@ class LinCRPCCSD(cc.ccsd.CCSD):
             t1_lambda -=     np.einsum('ka,ki->ia', t1, de_polar_mo_oo)
             t1_lambda -=     np.einsum('ic,ka,kc->ia', t1, t1, de_polar_mo_ov, optimize=True)
             
-            t1_new -= self.coupling**2*de_polar_mo_factor*t1_lambda
+            t1new -= self.coupling**2*de_polar_mo_factor*t1_lambda
 
             # T2 update with Lambda1 correction
             t2_lambda  =  np.einsum('ijac,bc->ijab', t2, de_polar_mo_vv, optimize=True)
@@ -228,9 +229,9 @@ class LinCRPCCSD(cc.ccsd.CCSD):
             t2_lambda -=  np.einsum('ka,ijcb,kc->ijab', t1, t2, de_polar_mo_ov, optimize=True)
             t2_lambda +=  np.einsum('kb,ijca,kc->ijab', t1, t2, de_polar_mo_ov, optimize=True)
 
-            t2_new -= self.coupling**2*de_polar_mo_factor*t2_lambda
+            t2new -= self.coupling**2*de_polar_mo_factor*t2_lambda
         
-        return t1_new, t2_new
+        return t1new, t2new
 
     def copy(self, mf=None):
         # ensure compatility with PySCF's copy method to run density_fit(), newton(), etc.

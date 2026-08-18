@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Eric Fischer, 06.08.2026, v2.0
+CRP-RHF
 
 Implementation of Cavity Born-Oppenheimer (CBO) Hartree-Fock in cavity reaction potential (CRP) formulation (CRP-HF).
 CRP approach minimizes CBO electronic energy in cavity subspace self-consistently.
@@ -17,7 +17,6 @@ Fischer, J. Chem. Theory Comput. (2025) 21 (23): 12081-12093. doi:10.1021/acs.jc
 
 import numpy as np
 from pyscf import scf
-
 
 def get_hcore_crp(mf, mol=None, polarization=None, coupling=None):
     """
