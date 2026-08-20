@@ -7,8 +7,8 @@ Implementation of linearized cavity Born-Oppenheimer (CBO) coupled cluster theor
 singles and doubles excitations in cavity reaction potential (CRP) formulation (LinCRP-CCSD).
 
 CRP-CCSD minimizes CBO electronic energy in cavity subspace self-consistently and is 
-formally similar to implicit solvation CCSD models. Linearization refers here to a decoupling
-of amplitude and multiplier equations not to a linearization w.r.t amplitudes.
+formally similar to implicit solvation CCSD models. Lagrangian linearization with resepect to
+lambda multipliers decouples amplitude and multiplier equations similar to implicit solvation CCSD models.
 
 Correlated dipole fluctuation corrections for ab initio vibro-polaritonic chemistry.
 
