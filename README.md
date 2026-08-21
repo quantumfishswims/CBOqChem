@@ -4,12 +4,12 @@ This repository contains PySCF-based implementations of the cavity Born-Oppenhei
 and Coupled Cluster (CC) methods in the cavity reaction potential (CRP) formulation for applications in 
 ab initio vibro-polaritonic chemistry. 
 
+### Literature 
+
 The theoretical background, implementation and model applications were presented in two publications:
 
 - E.W. Fischer, J. Chem. Theory Comput. (2025) 21, 23, 12081-12093, doi:10.1021/acs.jctc.5c01604
 - E.W. Fischer, J. Chem. Phys. 161, 164112 (2024), doi:10.1063/5.0231528
-
-CBOqChem requires python, pyscf and numpy. 
 
 ## Cavity Reaction Potential (CRP) Approach
 
