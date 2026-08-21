@@ -17,7 +17,7 @@ The CRP approach provides access to electronic dipole fluctuation correction of 
 potential energy surfaces by integrating CBO energy optimization in cavity coordinate space self-consistently.
 The CRP approach is formally similar implicit solvation methods in quantum chemistry.
 
-## CRPgChem
+## CRPqChem
 
 ### CRP-RHF
 
