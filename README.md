@@ -1,6 +1,6 @@
 # CBOqChem 
 
-**CBOqChem** is a Python package providing PySCF-based implementations of the **Cavity Born-Oppenheimer (CBO)** Hartree-Fock and Coupled Cluster methods within the **Cavity Reaction Potential (CRP)** formulation. 
+**CBOqChem** is a Python package providing PySCF-based implementations of the **Cavity Born-Oppenheimer (CBO) Hartree-Fock** and **Coupled Cluster** methods within the **Cavity Reaction Potential (CRP)** formulation. 
 
 ## Overview
 The **CBOqChem** package enables ab initio vibro-polaritonic chemistry calculations for the electronic ground state of molecules in the vibrational strong coupling regime. Ab initio vibro-polaritonic chemistry 
