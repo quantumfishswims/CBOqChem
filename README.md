@@ -11,7 +11,7 @@ The theoretical background, implementation and model applications were presented
 
 CBOqChem requires python, pyscf and numpy. 
 
-## Cavity reaction potential (CRP) approach
+## Cavity Reaction Potential (CRP) Approach
 
 The CRP approach provides access to electronic dipole fluctuation correction of molecular 
 potential energy surfaces by integrating CBO energy optimization in cavity coordinate space self-consistently.
