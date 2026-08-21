@@ -24,5 +24,5 @@ The theoretical background and implementation details are described in:
     *J. Chem. Phys.* **161**, 164112 (2024). 
 	DOI: 10.1063/5.0231528
 
-Please cite these references when using CBOqChem in your research.
+Please cite these and the PySCF references therein when using CBOqChem in your research.
 
