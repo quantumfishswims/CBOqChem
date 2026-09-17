@@ -64,8 +64,8 @@ The `examples/` directory contains runnable scripts demonstrating each method on
 
 ### `examples/crpCC/`
 - **`00_lin_crpccsd_singlept.py`**: Singlepoint LinCRP-CCSD electronic dipole fluctuation correction for a water dimer, comparing the mean-field, lambda0, and lambda levels of theory.
-- **`01_lin_crpccsd_scan.py`**: Lambda0-level LinCRP-CCSD potential energy surface scan for a dissociating hydrogen dimer, comparing three cavity polarization directions and plotting the results.
-- **`02_crpccsd_singlept.py`**: Singlepoint iterative (self-consistent) CRP-CCSD electronic dipole fluctuation correction for a water monomer.
+- **`01_lin_crpccsd_scan.py`**: Lambda0-level LinCRP-CCSD potential energy surface scan for a dissocisating hydrogen dimer, comparing three cavity polarization directions and plotting the results.
+- **`02_crpccsd_singlept.py`**: Singlepoint iterative (self-consistent) CRP-CCSD electronic dipole fluctuation correction for a water dimer.
 
 Each script can be run directly once the package (and the `examples` extra) is installed, e.g.:
 
