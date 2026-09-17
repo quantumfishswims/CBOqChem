@@ -47,7 +47,7 @@ The installable package lives under `src/CRPqChem/` (src layout), so it does not
 
 ```
 src/CRPqChem/
-├── __init__.py              # Public API: CRPRHF, CRPCCSD, LinCRPCCSD, CCD, LinCRPCCD
+├── __init__.py              # Public API: CRPRHF, CRPCCSD, LinCRPCCSD
 ├── crp_rhf.py                # CRP-RHF: cavity Born-Oppenheimer mean-field theory
 ├── crp_ccsd.py                # CRP-CCSD: iterative (self-consistent) coupled cluster theory
 ├── lin_crp_ccsd.py            # LinCRP-CCSD: linearized coupled cluster theory

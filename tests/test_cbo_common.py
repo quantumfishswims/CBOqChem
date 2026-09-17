@@ -5,7 +5,7 @@ Tests for the shared CBO helpers (src/CRPqChem/_cbo_common.py).
 import numpy as np
 import pytest
 
-from CRPqChem import CRPCCSD, LinCRPCCD
+from CRPqChem import CRPCCSD
 from CRPqChem._cbo_common import CBOintegrals, validate_polarization
 
 
@@ -23,7 +23,7 @@ def test_validate_polarization_rejects_non_unit_vector():
         validate_polarization(np.array([1.0, 1.0, 0.0]))
 
 
-@pytest.mark.parametrize("cls", [CRPCCSD, LinCRPCCD])
+@pytest.mark.parametrize("cls", [CRPCCSD])
 def test_cbo_using_classes_inherit_shared_mixin(cls):
     assert CBOintegrals in cls.__mro__
     for name in ("_cbo_eri_ao", "_dipole_ao_to_mo", "_make_cbo_eris_incore",

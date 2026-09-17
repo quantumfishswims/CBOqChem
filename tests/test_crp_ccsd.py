@@ -1,4 +1,6 @@
-"""Tests for CRPCCSD (src/CRPqChem/crp_ccsd.py), the iterative CRP-CCSD solver."""
+"""
+Tests for CRPCCSD (src/CRPqChem/crp_ccsd.py), the iterative CRP-CCSD solver.
+"""
 
 import numpy as np
 import pytest
