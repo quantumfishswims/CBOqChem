@@ -1,0 +1,23 @@
+ab-initio-crp-qchem (CRPqChem)
+Copyright 2026 Eric W. Fischer
+
+This product includes software developed independently of PySCF, but
+depends on and is designed to work with PySCF (https://www.pyscf.org),
+Copyright 2014-2021 The PySCF Developers, licensed under the Apache
+License, Version 2.0. See https://github.com/pyscf/pyscf/blob/master/NOTICE
+for PySCF's full list of contributors.
+
+In addition, one function in this project incorporates modified source
+code from PySCF directly:
+
+  src/CRPqChem/_cbo_common.py :: CBOintegrals._make_cbo_eris_incore
+
+  is adapted from pyscf.cc.ccsd._make_eris_incore (Copyright 2014-2021
+  The PySCF Developers, Apache License, Version 2.0). 
+  The ERI-packing loop structure is reused unchanged but two-electron 
+  integrals are replaced with the dipole self-energy (DSE) augmented
+  integrals computed by this project's _cbo_eri_ao().
+
+This NOTICE file is provided for informational purposes only and does
+not modify the License terms under which this project or PySCF are
+distributed.

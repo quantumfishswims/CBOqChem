@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Singlepoint energy via Cavity Born-Oppenheimer (CBO) coupled cluster theory 
+Singlepoint energy via Cavity Born-Oppenheimer (CBO) coupled cluster theory
 in cavity reaction potential (CRP) formulation with singles and doubles excitations (CRP-CCSD).
 
 Linearized CRP-CCSD formulations minimize CBO electronic energy in cavity subspace on
@@ -9,17 +9,16 @@ Linearized CRP-CCSD formulations minimize CBO electronic energy in cavity subspa
 2) lambda0-level of theory (energy correction from correlated dipole fluctuations)
 3) lambda-level of theory  (energy & amplitude correction from correlated dipole fluctuations)
 
-Example provides correlated electronic dipole fluctuation correction 
+Example provides correlated electronic dipole fluctuation correction
 for a water dimer coupled to a single cavity mode.
 
 Literature:
 Fischer, J. Chem. Phys. 161, 164112 (2024), doi:10.1063/5.0231528
 """
 
-import bootstrap
 import numpy as np
 from pyscf import gto, scf, cc
-from src.CRPqChem import CRPRHF, LinCRPCCSD
+from CRPqChem import CRPRHF, LinCRPCCSD
 
 coupling            = 0.03                  # Light-matter coupling strength in sqrt(Eh)/e Bohr
 polarization        = [np.array([0,0,1])]   # List of normalized polarization vectors
@@ -61,17 +60,17 @@ for i_pol in range(len(polarization)):
     delta_lincrpccsd_mf.append(np.abs(ecc_mflin - ecc))
 
     #lambda0-linearised CRP-CCSD
-    mylincrpccsd_lambda0 = LinCRPCCSD(crpmf, lambda0=True)                 
+    mylincrpccsd_lambda0 = LinCRPCCSD(crpmf, lambda0=True)
     mylincrpccsd_lambda0.kernel()
     ecc_lambda0 = crpmf.e_tot + mylincrpccsd_lambda0.e_corr
-    delta_lincrpccsd_lambda0.append(np.abs(ecc_lambda0 - ecc))  
+    delta_lincrpccsd_lambda0.append(np.abs(ecc_lambda0 - ecc))
 
-    #lambda-linearised CRP-CCSD   
-    mylincrpccsd_lambda = LinCRPCCSD(crpmf, lambda1=True)                               
+    #lambda-linearised CRP-CCSD
+    mylincrpccsd_lambda = LinCRPCCSD(crpmf, lambda1=True)
     mylincrpccsd_lambda.kernel()
     ecc_lambda = crpmf.e_tot + mylincrpccsd_lambda.e_corr
-    delta_lincrpccsd_lambda.append(np.abs(ecc_lambda - ecc))  
+    delta_lincrpccsd_lambda.append(np.abs(ecc_lambda - ecc))
 
 print("delta_mf_lincrpccsd: \n",    delta_lincrpccsd_mf)
-print("delta_lambda0_lincrpccsd: \n",  delta_lincrpccsd_lambda0)     
+print("delta_lambda0_lincrpccsd: \n",  delta_lincrpccsd_lambda0)
 print("delta_lambda_lincrpccsd: \n",   delta_lincrpccsd_lambda)

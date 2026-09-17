@@ -1,31 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Singlepoint energy via Cavity Born-Oppenheimer (CBO) coupled cluster theory 
+Singlepoint energy via self-consistent Cavity Born-Oppenheimer (CBO) coupled cluster theory
 in cavity reaction potential (CRP) formulation with singles and doubles excitations (CRP-CCSD).
 
-Iterative CRP-CCSD formulations minimize CBO electronic energy in cavity subspace.
+CRP-CCSD formulation minimizes CBO electronic energy in cavity subspace.
 
-Example provides correlated electronic dipole fluctuation correction 
-for a water monomer coupled to a single cavity mode.
+Example provides correlated electronic dipole fluctuation correction
+for a water dimer coupled to a single cavity mode.
 
 Literature:
 Fischer, J. Chem. Phys. 161, 164112 (2024), doi:10.1063/5.0231528
 """
 
-import bootstrap
 import numpy as np
 from pyscf import gto, scf, cc
-from src.CRPqChem import CRPRHF, CRPCCSD
+from CRPqChem import CRPRHF, CRPCCSD
 
 coupling            = 0.015                  # Light-matter coupling strength in sqrt(Eh)/e Bohr
 polarization        = [np.array([0,0,1])]   # List of normalized polarization vectors
-ao_basis            = 'augccpvdz'           # Basis set for electronic structure calculations
+ao_basis            = 'def2svpd'           # Basis set for electronic structure calculations
 
 mol = gto.M(
 atom=[["H",  0.00142,      -0.03800,        0.0],
       ["O",  0.00142,       0.05139,       -0.95281],
-      ["H",  0.00142,       -0.84858,       -1.27824]],
+      ["H",  0.00142,       -0.84858,       -1.27824],
+      ["H",  0.74281,        0.37695,        1.98765],
+      ["O",  0.00142,       -0.03800,        1.54719],
+      ["H", -0.76839,        0.40250,        1.90662]],
     basis = ao_basis,
     charge = 0,
     verbose = 4

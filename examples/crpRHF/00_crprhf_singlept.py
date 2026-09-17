@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Singlepoint energies via Cavity Born-Oppenheimer (CBO) Restricted Hartree-Fock 
+Singlepoint energies via Cavity Born-Oppenheimer (CBO) Restricted Hartree-Fock
 in cavity reaction potential (CRP) formulation (CRP-RHF).
 CRP approach minimizes CBO electronic energy in cavity subspace
 
-Example provides mean-field electronic dipole fluctuation correction 
+Example provides mean-field electronic dipole fluctuation correction
 for a water dimer coupled to a single cavity mode.
 
 Literature:
@@ -14,8 +14,7 @@ Fischer, J. Chem. Phys. 161, 164112 (2024). doi:10.1063/5.0231528
 
 import numpy as np
 from pyscf import gto, scf
-import bootstrap
-from src.CRPqChem import CRPRHF
+from CRPqChem import CRPRHF
 
 coupling            = 0.03                  # Light-matter coupling strength in sqrt(Eh)/e Bohr
 polarization        = [np.array([0,0,1])]   # List of normalized polarization vectors

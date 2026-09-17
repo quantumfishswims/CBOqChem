@@ -1,24 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-PES scan via Cavity Born-Oppenheimer (CBO) coupled cluster theory 
-in cavity reaction potential (CRP) formulation with singles and doubles excitations (CRP-CCSD).
+PES scan via linearized Cavity Born-Oppenheimer (CBO) coupled cluster theory
+in cavity reaction potential (CRP) formulation with singles and doubles excitations (LinCRP-CCSD).
 
-Linearized CRP-CCSD on lambda0-level of theory accounting for energy correction from 
-correlated dipole fluctuations while minimizing CBO electronic energy in cavity subspace
+Linearized CRP-CCSD formulations minimize CBO electronic energy in cavity subspace on
+1) mean-field level of theory
+2) lambda0-level of theory (energy correction from correlated dipole fluctuations)
+3) lambda-level of theory  (energy & amplitude correction from correlated dipole fluctuations)
 
-Example provides correlated electronic dipole fluctuation correction 
+Example provides correlated electronic dipole fluctuation correction
 for a dissociating hydrogen dimer coupled to a single cavity mode.
 
 Literature:
 Fischer, J. Chem. Phys. 161, 164112 (2024), doi:10.1063/5.0231528
 """
 
-import bootstrap
 import numpy as np
 import matplotlib.pyplot as plt
 from pyscf import gto, scf, cc
-from src.CRPqChem import CRPRHF, LinCRPCCSD
+from CRPqChem import CRPRHF, LinCRPCCSD
 
 coupling            = 0.03                      # Light-matter coupling strength in sqrt(Eh)/e Bohr
 polarization        = [np.array([1,0,0]),
@@ -61,7 +62,7 @@ for i_grid in range(len(nuc_grid)):
         charge = 0,
         verbose = 3
     )
-    
+
     e_scan_ccsd = myccsd_scan(dimer)
     pes_ccsd_scan.append(e_scan_ccsd)
 
@@ -71,9 +72,9 @@ for i_grid in range(len(nuc_grid)):
 
     e_scan_lambda0_lincrpccsd      = [e_scan_lambda0_lincrpccsd_xpol,
                                       e_scan_lambda0_lincrpccsd_ypol,
-                                      e_scan_lambda0_lincrpccsd_zpol                                    
+                                      e_scan_lambda0_lincrpccsd_zpol
                                       ]
-    
+
     pes_lambda0_lincrpccsd_scan.append(e_scan_lambda0_lincrpccsd)
 
 
@@ -88,22 +89,3 @@ plt.plot(nuc_grid, pes_lambda0_lincrpccsd_shift_ypol, label='Lambda0-LinCRPCCSD,
 plt.plot(nuc_grid, pes_lambda0_lincrpccsd_shift_zpol, label='Lambda0-LinCRPCCSD, pol = '+str(polarization[2]))
 plt.legend(loc='upper right')
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
