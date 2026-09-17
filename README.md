@@ -1,6 +1,6 @@
 # CBOqChem 
 
-**CBOqChem** is a Python package providing PySCF-based implementations of the **Cavity Born-Oppenheimer (CBO) Hartree-Fock** and **Coupled Cluster** methods within the **Cavity Reaction Potential (CRP)** formulation. 
+**CBOqChem** is a Python package providing PySCF-based implementations of the **Cavity Born-Oppenheimer (CBO) restricted Hartree-Fock (RHF)** and **Coupled Cluster (CC)** methods within the **Cavity Reaction Potential (CRP)** formulation. 
 
 ## Overview
 The **CBOqChem** package enables ab initio vibro-polaritonic chemistry calculations for the electronic ground state of molecules in the vibrational strong coupling regime. Ab initio vibro-polaritonic chemistry 
@@ -18,8 +18,8 @@ addresses cavity-induced electronic dipole fluctuations correcting the ground st
 Clone the repository and install it with pip:
 
 ```bash
-git clone <repo-url>
-cd ab_initio_crp_qchem
+git clone https://github.com/quantumfishswims/CBOqChem CBOqChem
+cd CBOqChem
 pip install .
 ```
 
@@ -47,7 +47,7 @@ The installable package lives under `src/CRPqChem/` (src layout), so it does not
 
 ```
 src/CRPqChem/
-├── __init__.py              # Public API: CRPRHF, CRPCCSD, LinCRPCCSD
+├── __init__.py              # Public API: CRPRHF, CRPCCSD, LinCRPCCSD, CCD, LinCRPCCD
 ├── crp_rhf.py                # CRP-RHF: cavity Born-Oppenheimer mean-field theory
 ├── crp_ccsd.py                # CRP-CCSD: iterative (self-consistent) coupled cluster theory
 ├── lin_crp_ccsd.py            # LinCRP-CCSD: linearized coupled cluster theory
@@ -64,8 +64,8 @@ The `examples/` directory contains runnable scripts demonstrating each method on
 
 ### `examples/crpCC/`
 - **`00_lin_crpccsd_singlept.py`**: Singlepoint LinCRP-CCSD electronic dipole fluctuation correction for a water dimer, comparing the mean-field, lambda0, and lambda levels of theory.
-- **`01_lin_crpccsd_scan.py`**: Lambda0-level LinCRP-CCSD potential energy surface scan for a dissocisating hydrogen dimer, comparing three cavity polarization directions and plotting the results.
-- **`02_crpccsd_singlept.py`**: Singlepoint iterative (self-consistent) CRP-CCSD electronic dipole fluctuation correction for a water dimer.
+- **`01_lin_crpccsd_scan.py`**: Lambda0-level LinCRP-CCSD potential energy surface scan for a dissociating hydrogen dimer, comparing three cavity polarization directions and plotting the results.
+- **`02_crpccsd_singlept.py`**: Singlepoint iterative (self-consistent) CRP-CCSD electronic dipole fluctuation correction for a water monomer.
 
 Each script can be run directly once the package (and the `examples` extra) is installed, e.g.:
 
