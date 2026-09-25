@@ -65,7 +65,7 @@ The `examples/` directory contains runnable scripts demonstrating each method on
 ### `examples/crpCC/`
 - **`00_lin_crpccsd_singlept.py`**: Singlepoint LinCRP-CCSD electronic dipole fluctuation correction for a water dimer, comparing the mean-field, lambda0, and lambda levels of theory.
 - **`01_lin_crpccsd_scan.py`**: Lambda0-level LinCRP-CCSD potential energy surface scan for a dissociating hydrogen dimer, comparing three cavity polarization directions and plotting the results.
-- **`02_crpccsd_singlept.py`**: Singlepoint iterative (self-consistent) CRP-CCSD electronic dipole fluctuation correction for a water monomer.
+- **`02_crpccsd_singlept.py`**: Singlepoint iterative (self-consistent) CRP-CCSD electronic dipole fluctuation correction for a water dimer.
 
 Each script can be run directly once the package (and the `examples` extra) is installed, e.g.:
 
@@ -81,7 +81,6 @@ The `tests/` directory contains a pytest suite covering `CRPRHF`, `CRPCCSD`, `Li
 - **`test_crp_rhf.py`**: `CRPRHF` reduces to canonical PySCF RHF at zero coupling, energy dependence on coupling magnitude/polarization sign, and polarization/cavity-argument validation.
 - **`test_crp_ccsd.py`**: self-consistent `CRPCCSD` reduces to canonical CCSD at zero coupling, converges with nonzero coupling, and validates polarization input.
 - **`test_lin_crp_ccsd.py`**: `LinCRPCCSD` reduces to canonical CCSD at zero coupling and correctly applies its lambda correction for nonzero coupling.
-- **`test_lin_crp_ccd_channel.py`**: `LinCRPCCD` reduces to the local T1-pinned `CCD` class at zero coupling and to canonical MP2 for the `mp2` channel, checks channel labeling, and confirms convergence across all coupling channels.
 
 Install the `test` extra and run pytest from the repository root:
 
