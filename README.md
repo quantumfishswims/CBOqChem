@@ -47,10 +47,10 @@ The installable package lives under `src/CRPqChem/` (src layout), so it does not
 
 ```
 src/CRPqChem/
-├── __init__.py              # Public API: CRPRHF, CRPCCSD, LinCRPCCSD
+├── __init__.py              # Public API: CRPRHF, CRPCCSD, LinCRPCCSD, CCD, LinCRPCCD
 ├── crp_rhf.py                # CRP-RHF: cavity Born-Oppenheimer mean-field theory
 ├── crp_ccsd.py                # CRP-CCSD: iterative (self-consistent) coupled cluster theory
-├── lin_crp_ccsd.py            # LinCRP-CCSD: linearized coupled cluster theory
+├── lin_crp_ccsd.py            # LinCRP-CCSD: canonical coupled cluster theory
 └── _cbo_common.py              # Shared DSE-augmented integral helpers reused by crp_ccsd.py and lin_crp_ccsd.py
 ```
 
@@ -75,12 +75,13 @@ python examples/crpRHF/00_crprhf_singlept.py
 
 ## Testing
 
-The `tests/` directory contains a pytest suite covering `CRPRHF`, `CRPCCSD`, `LinCRPCCSD` and the shared `_cbo_common` mixin:
+The `tests/` directory contains a pytest suite covering `CRPRHF`, `CRPCCSD`, `LinCRPCCSD`, `CCD` and `LinCRPCCD`, plus the shared `_cbo_common` mixin:
 
 - **`test_cbo_common.py`**: polarization-vector validation shared by the CC-based classes.
 - **`test_crp_rhf.py`**: `CRPRHF` reduces to canonical PySCF RHF at zero coupling, energy dependence on coupling magnitude/polarization sign, and polarization/cavity-argument validation.
 - **`test_crp_ccsd.py`**: self-consistent `CRPCCSD` reduces to canonical CCSD at zero coupling, converges with nonzero coupling, and validates polarization input.
 - **`test_lin_crp_ccsd.py`**: `LinCRPCCSD` reduces to canonical CCSD at zero coupling and correctly applies its lambda correction for nonzero coupling.
+- **`test_lin_crp_ccd_channel.py`**: `LinCRPCCD` reduces to the local T1-pinned `CCD` class at zero coupling and to canonical MP2 for the `mp2` channel, checks channel labeling, and confirms convergence across all coupling channels.
 
 Install the `test` extra and run pytest from the repository root:
 
